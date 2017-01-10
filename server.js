@@ -1,64 +1,107 @@
 // MEAN Stack RESTful API Tutorial - Contact List App
 
 var express = require('express');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+
 var app = express();
 
+mongoose.Promise = global.Promise;
+
+var userRegister = {};
+var userRegisterArray = [];
+
+var contact ={};
+var contactMap = [];
+
+var ticket = {};
+var ticketMap = []
+
+var fs = require('fs');
+
+var txtUsers = 'C:/nodeprojects/adventureTicketApp/users.txt';
+var txtTickets = 'C:/nodeprojects/adventureTicketApp/tickets.txt';
+
+
+app.set('port', (process.env.PORT || 5000));
 //var mongojs = require('mongojs');
 //var db = mongojs('contactlist', ['contactlist']);
-var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
-app.get('/contactlist', function (req, res) {
-  console.log('I received a GET request');
 
-  db.contactlist.find(function (err, docs) {
-    console.log(docs);
-    res.json(docs);
-  });
+
+//########### addUserRegister() ###########
+
+app.post('/adduserregister', function (req, res) {
+  console.log(req.body);
+  userRegister = {firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email};
+
+  fs.appendFile(txtUsers, userRegister.firstName +'\t\t\t\t\t'+ userRegister.lastName +'\t\t\t\t\t'+ userRegister.email + '\r\n', encoding = 'utf8', function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log('User saved on File');
+
+
 });
+
+  userRegisterArray.push(userRegister);
+  console.log(userRegister);
+
+  res.send(true);
+
+});
+
+//########### addContact() ###########
 
 app.post('/contactlist', function (req, res) {
   console.log(req.body);
-  db.contactlist.insert(req.body, function(err, doc) {
-    res.json(doc);
-  });
+  ticket = {firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email};
+
+  fs.appendFile(txtTickets, ticket.firstName +'\t\t\t\t\t'+ ticket.lastName +'\t\t\t\t\t'+ ticket.email + '\r\n', encoding = 'utf8', function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log('Contact saved on file');
 });
 
-app.delete('/contactlist/:id', function (req, res) {
-  var id = req.params.id;
-  console.log(id);
-  db.contactlist.remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
-    res.json(doc);
-  });
+  ticketMap.push(ticket);
+  console.log(ticketMap);
+  res.send(true);
+
+});
+
+
+
+app.delete('/contactlist/:email', function (req, res) {
+  var email = req.params.email;
+  console.log(email);
+
+  function findContact(contact) {
+    return contact.email === email;
+  }
+
+  contactMap.splice(contactMap.indexOf(contactMap.find(findContact)));
+
 });
 
 app.get('/contactlist/:id', function (req, res) {
   var id = req.params.id;
   console.log(id);
-  db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
+/*   db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
     res.json(doc);
-  });
+  }); */
 });
 
 app.put('/contactlist/:id', function (req, res) {
   var id = req.params.id;
   console.log(req.body.name);
-  db.contactlist.findAndModify({
-    query: {_id: mongojs.ObjectId(id)},
-    update: {$set: {name: req.body.name, email: req.body.email, number: req.body.number}},
-    new: true}, function (err, doc) {
-      res.json(doc);
-    }
-  );
+
 });
 
-/*
-app.get('/',function(req,res){
-	app.use(express.static(__dirname + '/public'))
-	//res.send("Hello world from server.js")
-});
-*/
 
-app.listen(3000);
-console.log("Server running on port 3000");
+
+app.listen(3001);
+console.log("Server running on port 3001");
