@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-mongoose.Promise = global.Promise;
+//mongoose.Promise = global.Promise;
 
 var userRegister = {};
 var userRegisterArray = [];
