@@ -9,7 +9,7 @@ var AdventureSeaker = require('./models/adventureSeaker');
 
 var app = express();
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://jpms:<jpms@ds155087>@ds159998.mlab.com:59998/heroku_n3fc1tr2');
+mongoose.connect('mongodb://jpms:qwer123@ds159998.mlab.com:59998/heroku_n3fc1tr2');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
