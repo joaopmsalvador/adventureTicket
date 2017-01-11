@@ -9,13 +9,14 @@ var AdventureSeaker = require('./models/adventureSeaker');
 
 var app = express();
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://jpms:qwer123@ds159998.mlab.com:59998/heroku_n3fc1tr2');
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-
+mongoose.connect('mongodb://jpms:qwer123@ds159998.mlab.com:59998/heroku_n3fc1tr2', function(err) {
+  if(err){
+    console.log(err)
+  }else {
+    console.log("Connected to the database")
+  }
 });
+
 
 var userRegister = {};
 var userRegisterArray = [];
