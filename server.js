@@ -68,7 +68,7 @@ app.post('/adduserregister', function (req, res) {
 
   adventureSeaker.save(function (err){
     if(err){
-      console.log(err);
+      console.log("ERRO:                 " + err);
     }else {
       console.log('New adventureSeaker added on mongoDB: ' + adventureSeaker.firstName + ' ' + adventureSeaker.lastName + ' ' + adventureSeaker.email)
     }
