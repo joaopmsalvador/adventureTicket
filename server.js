@@ -57,6 +57,7 @@ app.post('/adduserregister', function (req, res) {
 
   userRegisterArray.push(userRegister);
   console.log(userRegister);
+
   //save on mongojs
   var adventureSeaker = new AdventureSeaker({
     firstName:req.body.firstName,
@@ -68,7 +69,7 @@ app.post('/adduserregister', function (req, res) {
     if(err){
       console.log(err);
     }else {
-      console.log('New adventureSeaker added on mongoDB: ' + adventureSeaker.firstName + " " + adventureSeaker.lastName + " " adventureSeaker.email)
+      console.log('New adventureSeaker added on mongoDB: ' + adventureSeaker.firstName + ' ' + adventureSeaker.lastName + ' ' + adventureSeaker.email)
     }
   });
 
