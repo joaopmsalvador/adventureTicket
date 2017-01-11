@@ -103,5 +103,7 @@ app.put('/contactlist/:id', function (req, res) {
 
 
 
-app.listen(3001);
-console.log("Server running on port 3001");
+// Spin up the server
+app.listen(app.get('port'), function() {
+    console.log('running on port', app.get('port'))
+});
