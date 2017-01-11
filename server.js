@@ -72,11 +72,8 @@ app.post('/adduserregister', function (req, res) {
     }else {
       console.log('New adventureSeaker added on mongoDB: ' + adventureSeaker.firstName + ' ' + adventureSeaker.lastName + ' ' + adventureSeaker.email)
     }
+
   });
-
-
-
-
 
   res.send(true);
 

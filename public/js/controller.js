@@ -4,12 +4,12 @@
 console.log('Inside addUserRegister');
 
 $(function() {
-	
-	
+
+
 	console.log('Inside function before contactForm');
 
 	$("#contactForm input").jqBootstrapValidation({
-		
+
         preventSubmit: true,
         submitError: function($form, event, errors) {
             // additional error messages or events
@@ -27,9 +27,9 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             } */
 			console.log('Inside contactFrom befor ajax call');
-			
+
             $.ajax({
-                url: "http://localhost:3001/adduserregister",
+                url: "https://aqueous-brushlands-18928.herokuapp.com/adduserregister",
                 type: "POST",
 				contentType: 'application/json',
                 data: JSON.stringify({
@@ -62,7 +62,7 @@ $(function() {
                     $('#contactForm').trigger("reset");
                 },
             });
-			
+
 		    console.log('Inside contactFrom after ajax call');
 
         },
@@ -70,8 +70,8 @@ $(function() {
             return $(this).is(":visible");
         },
     });
-	
-	
+
+
 	$("#addTicketForm input").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
@@ -128,13 +128,13 @@ $(function() {
             return $(this).is(":visible");
         },
     });
-	
-	
+
+
 	$('#sendTicket').on('click',function(){
-	    
+
 		console.log('Inside send Ticket');
 		var $tickets = $('#tickets');
-	 	
+
 		$.ajax({
 			type: 'GET',
 			url: '/contactlist',
@@ -146,27 +146,27 @@ $(function() {
 			error: function(){
 				alert('error loading tickets')
 			}
-		
+
 		});
 	});
-	
+
 	$("a[data-toggle=\"tab\"]").click(function(e) {
-		
+
 	    console.log('Inside contactFrom inside data toggle');
         e.preventDefault();
         $(this).tab("show");
     });
-	
-	
+
+
 });
 
-   
-  
-	
+
+
+
 
 
 /*When clicking on Full hide fail/success boxes */
 $('#name').focus(function() {
-	
+
     $('#success').html('');
 });
