@@ -3,7 +3,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var AdventureSeaker = require('./models/player');
+var AdventureSeaker = require('./models/adventureSeaker');
 //var mongoose = require('mongoose');
 
 
