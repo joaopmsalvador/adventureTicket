@@ -2,12 +2,20 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var AdventureSeaker = require('./models/player');
 //var mongoose = require('mongoose');
 
 
 var app = express();
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://jpms:<jpms@ds155087>@ds159998.mlab.com:59998/heroku_n3fc1tr2');
 
-//mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+
+});
 
 var userRegister = {};
 var userRegisterArray = [];
@@ -43,12 +51,30 @@ app.post('/adduserregister', function (req, res) {
         return console.log(err);
     }
     console.log('User saved on File');
-
-
 });
+
+
 
   userRegisterArray.push(userRegister);
   console.log(userRegister);
+  //save on mongojs
+  var adventureSeaker = new AdventureSeaker({
+    firstName:req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email
+  });
+
+  adventureSeaker.save(function (err){
+    if(err){
+      console.log(err);
+    }else {
+      console.log('New adventureSeaker added on mongoDB: ' + adventureSeaker.firstName + " " + adventureSeaker.lastName + " " adventureSeaker.email)
+    }
+  });
+
+
+
+
 
   res.send(true);
 
