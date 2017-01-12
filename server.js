@@ -45,6 +45,7 @@ app.use(bodyParser.json());
 
 app.post('/adduserregister', function (req, res) {
   console.log(req.body);
+  console.log("post request for adduserregister");
   userRegister = {firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email};
 
   //save on mongojs
