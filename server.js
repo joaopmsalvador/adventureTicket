@@ -47,20 +47,8 @@ app.post('/adduserregister', function (req, res) {
   console.log(req.body);
   userRegister = {firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email};
 
-  fs.appendFile(txtUsers, userRegister.firstName +'\t\t\t\t\t'+ userRegister.lastName +'\t\t\t\t\t'+ userRegister.email + '\r\n', encoding = 'utf8', function(err) {
-    if(err) {
-        return console.log(err);
-    }
-    console.log('User saved on File');
-});
-
-
-
-  userRegisterArray.push(userRegister);
-  console.log(userRegister);
-
   //save on mongojs
-  var adventureSeaker = new AdventureSeaker({
+  var adventureSeaker = new AdventureSeakers({
     firstName:req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email
@@ -74,6 +62,20 @@ app.post('/adduserregister', function (req, res) {
     }
 
   });
+  //save on file
+  fs.appendFile(txtUsers, userRegister.firstName +'\t\t\t\t\t'+ userRegister.lastName +'\t\t\t\t\t'+ userRegister.email + '\r\n', encoding = 'utf8', function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log('User saved on File');
+});
+
+
+
+  userRegisterArray.push(userRegister);
+  console.log(userRegister);
+
+
 
   res.send(true);
 
