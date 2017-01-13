@@ -49,7 +49,7 @@ app.post('/adduserregister', function (req, res) {
   userRegister = {firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email};
 
   //save on mongojs
-  var adventureSeaker = new AdventureSeakers({
+  var adventureSeaker = new AdventureSeaker({
     firstName:req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email
