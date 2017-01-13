@@ -6,9 +6,9 @@ console.log('Inside addUserRegister');
 $(function() {
 
 
-	console.log('Inside function before contactForm');
+	console.log('Inside function before adventureSeakerForm');
 
-	$("#contactForm input").jqBootstrapValidation({
+	$("#adventureSeakerForm input").jqBootstrapValidation({
 
         preventSubmit: true,
         submitError: function($form, event, errors) {
@@ -26,10 +26,10 @@ $(function() {
            /*  if (firstName.indexOf(' ') >= 0) {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             } */
-			console.log('Inside contactFrom befor ajax call');
+			console.log('Inside adventureSeakerForm befor ajax call');
 
             $.ajax({
-                url: "https://aqueous-brushlands-18928.herokuapp.com/adduserregister",
+                url: "http://aqueous-brushlands-18928.herokuapp.com/adduserregister",
                 type: "POST",
 				contentType: 'application/json',
                 data: JSON.stringify({
