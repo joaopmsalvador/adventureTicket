@@ -1,6 +1,6 @@
 // MEAN Stack RESTful API Tutorial - Contact List App
 
-var express = require('express');
+var express = require('express') );
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var AdventureSeaker = require('./models/adventureSeaker');
