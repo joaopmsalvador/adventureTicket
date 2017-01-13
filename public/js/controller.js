@@ -29,7 +29,7 @@ $(function() {
 			console.log('Inside adventureSeakerForm befor ajax call');
 
             $.ajax({
-                url: "http://aqueous-brushlands-18928.herokuapp.com/adduserregister",
+                url: "https://aqueous-brushlands-18928.herokuapp.com/adduserregister",
                 type: "POST",
 				contentType: 'application/json',
                 data: JSON.stringify({
