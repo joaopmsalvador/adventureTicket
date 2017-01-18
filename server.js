@@ -28,8 +28,6 @@ var ticket = {};
 
 
 app.set('port', (process.env.PORT || 5000));
-//var mongojs = require('mongojs');
-//var db = mongojs('contactlist', ['contactlist']);
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
@@ -81,10 +79,10 @@ app.post('/addTicketUser', function (req, res) {
       res.send(true);
     }
   });
-});
 
-visitor.pageview("/", "https://aqueous-brushlands-18928.herokuapp.com/", "Welcome page", function (err) {
-  console.log(err);
+  visitor.pageview("/", "https://aqueous-brushlands-18928.herokuapp.com/addTicketUser", "Add TicketUser", function (err) {
+    console.log(err);
+  });
 });
 
 app.delete('/contactlist/:email', function (req, res) {
