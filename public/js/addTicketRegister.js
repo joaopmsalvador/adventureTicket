@@ -11,7 +11,7 @@ $(function() {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
             var firstNameTicket = $("input#firstNameTicket").val();
-			var lastNameTicket = $("input#lastNameTicket").val();
+			      var lastNameTicket = $("input#lastNameTicket").val();
             var emailTicket = $("input#emailTicket").val();
             //var phone = $("input#phone").val();
             //var firstName = name; // For Success/Failure Message
@@ -20,7 +20,7 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "http://localhost:3001/contactlist",
+                url: "http://localhost:5000/adduserregister",
                 type: "POST",
 				contentType: 'application/json',
                 data: JSON.stringify({
@@ -53,6 +53,7 @@ $(function() {
                     $('#addTicketForm').trigger("reset");
                 },
             });
+
         },
         filter: function() {
             return $(this).is(":visible");

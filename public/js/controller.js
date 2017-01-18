@@ -1,10 +1,9 @@
 // Contact Form Scripts
 
 
-console.log('Inside addUserRegister');
+console.log('Inside adventureSeaker');
 
 $(function() {
-
 
 	console.log('Inside function before adventureSeakerForm');
 
@@ -18,35 +17,40 @@ $(function() {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
             var firstName = $("input#firstName").val();
-			var lastName = $("input#lastName").val();
+			      var lastName = $("input#lastName").val();
             var email = $("input#email").val();
-            //var phone = $("input#phone").val();
-            //var firstName = name; // For Success/Failure Message
             // Check for white space in name for Success/Fail message
-           /*  if (firstName.indexOf(' ') >= 0) {
-                firstName = name.split(' ').slice(0, -1).join(' ');
-            } */
-			console.log('Inside adventureSeakerForm befor ajax call');
+             if (firstName.indexOf(' ') >= 0) {
+							 firstName = firstName.split(' ').slice(0, -1).join(' ');
+						 }
+						 else if (lastName.indexOf(' ') >= 0){
+							 lastName = lastName.split(' ').slice(0, -1).join(' ');
+						 }
+					 console.log("Inside adventureSeakerForm before ajax call");
 
             $.ajax({
-                url: "https://aqueous-brushlands-18928.herokuapp.com/adduserregister",
+                url: "https://aqueous-brushlands-18928.herokuapp.com/addAdventureSeaker",
                 type: "POST",
 				contentType: 'application/json',
                 data: JSON.stringify({
                     firstName: firstName,
                     lastName: lastName,
-                    email: email,
+                    email: email
                 }),
                 cache: false,
-                success: function() {
+                success: function(err) {
                     // Success message
+										console.log(err);
                     $('#success').html("<div class='alert alert-success'>");
-                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-success')
-                        .append("<strong>Your message has been sent.</strong>");
-                    $('#success > .alert-success')
-                        .append('</div>');
+                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
+										if (err != true && err.errmsg.toString().includes("duplicate key error")){
+											console.log("É duplicado");
+											$('#success > .alert-success').append("<strong>You are already registered!</strong>");
+										}else{
+											console.log("Não é duplicado");
+										$('#success > .alert-success').append("<strong>Your message has been sent.</strong>");
+									}
+                    $('#success > .alert-success').append('</div>');
 
                     //clear all fields
                     $('#contactForm').trigger("reset");
@@ -54,9 +58,8 @@ $(function() {
                 error: function() {
                     // Fail message
                     $('#success').html("<div class='alert alert-danger'>");
-                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
+                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("</button>");
+										$('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
                     $('#success > .alert-danger').append('</div>');
                     //clear all fields
                     $('#contactForm').trigger("reset");
@@ -72,7 +75,10 @@ $(function() {
     });
 
 
-	$("#addTicketForm input").jqBootstrapValidation({
+		console.log("before addTicketUserForm");
+
+	$("#addTicketUserForm input").jqBootstrapValidation({
+
         preventSubmit: true,
         submitError: function($form, event, errors) {
             // additional error messages or events
@@ -81,22 +87,24 @@ $(function() {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
             var firstNameTicket = $("input#firstNameTicket").val();
-			var lastNameTicket = $("input#lastNameTicket").val();
+			      var lastNameTicket = $("input#lastNameTicket").val();
             var emailTicket = $("input#emailTicket").val();
-            //var phone = $("input#phone").val();
-            //var firstName = name; // For Success/Failure Message
+
             // Check for white space in name for Success/Fail message
-            /* if (firstName.indexOf(' ') >= 0) {
-                firstName = name.split(' ').slice(0, -1).join(' ');
-            } */
+						if (firstNameTicket.indexOf(' ') >= 0) {
+							firstName = firstNameTicket.split(' ').slice(0, -1).join(' ');
+						}
+						else if (lastNameTicket.indexOf(' ') >= 0){
+							lastName = lastNameTicket.split(' ').slice(0, -1).join(' ');
+						}
             $.ajax({
-                url: "http://localhost:3001/contactlist",
+                url: "https://aqueous-brushlands-18928.herokuapp.com/addTicketUser",
                 type: "POST",
 				contentType: 'application/json',
                 data: JSON.stringify({
-                    firstName: firstNameTicket,
-                    lastName: lastNameTicket,
-                    email: emailTicket,
+                    firstNameTicket: firstNameTicket,
+                    lastNameTicket: lastNameTicket,
+                    emailTicket: emailTicket,
                 }),
                 cache: false,
                 success: function() {

@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var AdventureSeaker = require('./models/adventureSeaker');
+var TicketUser = require('./models/ticketUser');
 //var mongoose = require('mongoose');
 
 
@@ -19,18 +20,7 @@ mongoose.connect('mongodb://jpms:qwer123@ds159998.mlab.com:59998/heroku_n3fc1tr2
 
 
 var userRegister = {};
-var userRegisterArray = [];
-
-var contact ={};
-var contactMap = [];
-
 var ticket = {};
-var ticketMap = []
-
-var fs = require('fs');
-
-var txtUsers = 'C:/nodeprojects/adventureTicketApp/users.txt';
-var txtTickets = 'C:/nodeprojects/adventureTicketApp/tickets.txt';
 
 
 app.set('port', (process.env.PORT || 5000));
@@ -43,10 +33,10 @@ app.use(bodyParser.json());
 
 //########### addUserRegister() ###########
 
-app.post('/adduserregister', function (req, res) {
+app.post('/addAdventureSeaker', function (req, res) {
+  console.log('################' + req + '##############33')
   console.log(req.body);
   console.log("post request for adduserregister");
-  userRegister = {firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email};
 
   //save on mongojs
   var adventureSeaker = new AdventureSeaker({
@@ -57,50 +47,37 @@ app.post('/adduserregister', function (req, res) {
 
   adventureSeaker.save(function (err){
     if(err){
-      console.log("ERRO:                 " + err);
+      console.log("ERRO:           " + err);
+      res.send(err);
     }else {
       console.log('New adventureSeaker added on mongoDB: ' + adventureSeaker.firstName + ' ' + adventureSeaker.lastName + ' ' + adventureSeaker.email)
+      res.send(true);
     }
-
   });
-  //save on file
-  fs.appendFile(txtUsers, userRegister.firstName +'\t\t\t\t\t'+ userRegister.lastName +'\t\t\t\t\t'+ userRegister.email + '\r\n', encoding = 'utf8', function(err) {
-    if(err) {
-        return console.log(err);
-    }
-    console.log('User saved on File');
 });
 
+//########### addTicketUser() ###########
 
-
-  userRegisterArray.push(userRegister);
-  console.log(userRegister);
-
-
-
-  res.send(true);
-
-});
-
-//########### addContact() ###########
-
-app.post('/contactlist', function (req, res) {
+app.post('/addTicketUser', function (req, res) {
   console.log(req.body);
-  ticket = {firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email};
 
-  fs.appendFile(txtTickets, ticket.firstName +'\t\t\t\t\t'+ ticket.lastName +'\t\t\t\t\t'+ ticket.email + '\r\n', encoding = 'utf8', function(err) {
-    if(err) {
-        return console.log(err);
+  //save on mongoDB
+  var ticketUser = new TicketUser({
+    firstNameTicket: req.body.firstNameTicket,
+    lastNameTicket: req.body.lastNameTicket,
+    emailTicket: req.body.emailTicket
+  });
+
+  ticketUser.save(function (err){
+    if(err){
+      console.log("ERRO:           " + err);
+      res.send(err);
+    }else {
+      console.log('New ticketUser added on mongoDB: ' + ticketUser.firstNameTicket + ' ' + ticketUser.lastNameTicket + ' ' + ticketUser.emailTicket)
+      res.send(true);
     }
-    console.log('Contact saved on file');
+  });
 });
-
-  ticketMap.push(ticket);
-  console.log(ticketMap);
-  res.send(true);
-
-});
-
 
 
 app.delete('/contactlist/:email', function (req, res) {
