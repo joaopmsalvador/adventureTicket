@@ -81,7 +81,8 @@ app.post('/addTicketUser', function (req, res) {
   });
 
   visitor.pageview("/", "https://aqueous-brushlands-18928.herokuapp.com/addTicketUser", "Add TicketUser", function (err) {
-    console.log(err);
+
+    console.log("GOOGLE ANALYTICS CALLBACK RESPONSE: "+err);
   });
 });
 
