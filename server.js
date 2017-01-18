@@ -10,9 +10,7 @@ var universalAnalytics = require('universal-analytics');
 
 var visitor = universalAnalytics('UA-90577424-1',{https: true});
 
-visitor.pageview("/", "https://aqueous-brushlands-18928.herokuapp.com/", "Welcome page", function (err) {
-  console.log(err);
-});
+
 
 var app = express();
 mongoose.Promise = global.Promise;
@@ -85,6 +83,9 @@ app.post('/addTicketUser', function (req, res) {
   });
 });
 
+visitor.pageview("/", "https://aqueous-brushlands-18928.herokuapp.com/", "Welcome page", function (err) {
+  console.log(err);
+});
 
 app.delete('/contactlist/:email', function (req, res) {
   var email = req.params.email;
