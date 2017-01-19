@@ -14,4 +14,4 @@
 
 <p>I also intend to learn not only about technologies and programming but also the social side of how to find a niche of users, how to promote the idea, how to analyze the feedback, how to work on an online team, how to setup a collaborative working development and so on.<p>
 
-<p> My friends, hold on tight to your seats because the rocket will be launched.....3 2 1 BUUUUUUUUUUUM <p>
+<p> My friends, hold on tight to your seats because the rocket will be launched.....3 2 1 BUUUUUUUUUUUUM <p>
