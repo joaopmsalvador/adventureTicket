@@ -62,7 +62,7 @@
    <header>
       <div class="container">
          <div class="intro-text">
-            <h1 class="section-heading"><span style = "color:#ffcc00;"><strong><big>theAdventureTicket.com</big></strong></span> </h2>
+            <h2 class="section-heading"><span style = "color:#ffcc00;"><strong><big>Adventure Ticket</big></strong></span> </h2>
 			      <h2 class="section-heading">The first free generator of UNEXPECTED EXPERIENCEs and TRAVEL OPPORTUNITIES. </h2>
             <a href="#about1" class="page-scroll btn btn-xl">Tell Me More</a>
          </div>
@@ -157,10 +157,11 @@
                         <input type="email" class="form-control" placeholder="Your Email *" id="emailTicket" required data-validation-required-message="Please enter your email address.">
                         <p class="help-block text-danger"></p>
                      </div>
-                     <!-- <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Your Ticket Picture *" id="" required data-validation-required-message="Please enter a picture of your ticket">
+                     <div class="form-group">
+                        <input type="file" id="uploadTicketImage" onchange="previewFile()"><br>
+                        <img src="" heigth ="200" alt = "Image preview...">
                         <p class="help-block text-danger"></p>
-                        </div> -->
+                     </div>
                      <!--  <div class="form-group">
                         <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
                         <p class="help-block text-danger"></p>

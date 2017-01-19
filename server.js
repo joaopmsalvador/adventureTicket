@@ -31,8 +31,6 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
-
-
 //########### addUserRegister() ###########
 
 app.post('/addAdventureSeaker', function (req, res) {
@@ -55,6 +53,10 @@ app.post('/addAdventureSeaker', function (req, res) {
       console.log('New adventureSeaker added on mongoDB: ' + adventureSeaker.firstName + ' ' + adventureSeaker.lastName + ' ' + adventureSeaker.email)
       res.send(true);
     }
+  });
+  visitor.pageview("/", "https://aqueous-brushlands-18928.herokuapp.com/addAdventureSeaker", "Add TicketUser", function (err) {
+
+    console.log("GOOGLE ANALYTICS CALLBACK RESPONSE: "+err);
   });
 });
 
@@ -85,34 +87,6 @@ app.post('/addTicketUser', function (req, res) {
     console.log("GOOGLE ANALYTICS CALLBACK RESPONSE: "+err);
   });
 });
-
-app.delete('/contactlist/:email', function (req, res) {
-  var email = req.params.email;
-  console.log(email);
-
-  function findContact(contact) {
-    return contact.email === email;
-  }
-
-  contactMap.splice(contactMap.indexOf(contactMap.find(findContact)));
-
-});
-
-app.get('/contactlist/:id', function (req, res) {
-  var id = req.params.id;
-  console.log(id);
-/*   db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
-    res.json(doc);
-  }); */
-});
-
-app.put('/contactlist/:id', function (req, res) {
-  var id = req.params.id;
-  console.log(req.body.name);
-
-});
-
-
 
 // Spin up the server
 app.listen(app.get('port'), function() {

@@ -6,7 +6,8 @@ var ticketUserSchema = new Schema({
     lastNameTicket: {type: String, required: true},
     emailTicket: {type: String, required: true},
     subscrition:{type: Boolean, required:true, default: true},
-    timestamp: {type: Date, default: Date.now}
+    timestamp: {type: Date, default: Date.now},
+    ticketImage:{type: Buffer, contentType: String}
 });
 
 module.exports = mongoose.model('TicketUser', ticketUserSchema);
