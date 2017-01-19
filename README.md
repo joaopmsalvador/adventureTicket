@@ -2,7 +2,7 @@
 
 <p>Open letter to the world adventure seakers:<p>
 
-<p>This was a project I am developing because I want to learn more about web development and the technologies available.</p>
+<p>I am developing this project because I want to learn more about web development and the technologies available.</p>
 
 <p>Also I believe the idea is really cool and I would like to see it working even if it's just one time.</p>
 
